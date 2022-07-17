@@ -1,0 +1,6 @@
+spring:
+  data:
+    cassandra:
+      contact-points: datacenter1
+      port: 9042
+      keyspace-name: keyspaceboottech
