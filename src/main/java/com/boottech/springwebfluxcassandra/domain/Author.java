@@ -21,7 +21,5 @@ public class Author {
 
     private String lastname;
 
-    private String middleName;
-
     private String firstname;
 }

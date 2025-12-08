@@ -46,7 +46,6 @@ public class AuthorServiceImpl implements AuthorService {
             .flatMap(author1 -> {
                 author1.setFirstname(author.getFirstname());
                 author1.setLastname(author.getLastname());
-                author1.setMiddleName(author.getMiddleName());
                 return repository.save(author1);
             });
     }

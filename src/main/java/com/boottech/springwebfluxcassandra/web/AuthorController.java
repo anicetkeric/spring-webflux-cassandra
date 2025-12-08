@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/authors")
 @Slf4j
 public class AuthorController {
 
@@ -24,12 +24,12 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping("/author")
+    @GetMapping
     public Flux<Author> getAllAuthors() {
         return authorService.getAll();
     }
 
-    @GetMapping("/author/{id}")
+    @GetMapping("/{id}")
     public Mono<ResponseEntity<Author>> getAuthorById(@PathVariable("id") String id) {
 
         return authorService.getById(id)
@@ -39,14 +39,14 @@ public class AuthorController {
             .log();
     }
 
-    @PostMapping("/author")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Author> addAuthor(@RequestBody @Valid Author author) {
         return authorService.add(author);
 
     }
 
-    @PutMapping("/author/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<ResponseEntity<Author>> updateAuthor(@RequestBody Author author, @PathVariable String id) {
 
@@ -58,7 +58,7 @@ public class AuthorController {
 
     }
 
-    @DeleteMapping("/author/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteAuthorById(@PathVariable String id){
         return authorService.deleteById(id);

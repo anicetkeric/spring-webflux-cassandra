@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/books")
 @Slf4j
 public class BookController {
 
@@ -24,12 +24,12 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/book")
+    @GetMapping
     public Flux<Book> getAllBooks() {
         return bookService.getAll();
     }
 
-    @GetMapping("/book/{id}")
+    @GetMapping("/{id}")
     public Mono<ResponseEntity<Book>> getBookById(@PathVariable("id") String id) {
 
         return bookService.getById(id)
@@ -39,14 +39,14 @@ public class BookController {
             .log();
     }
 
-    @PostMapping("/book")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Book> addBook(@RequestBody @Valid Book book) {
         return bookService.add(book);
 
     }
 
-    @PutMapping("/book/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<ResponseEntity<Book>> updateBook(@RequestBody Book book, @PathVariable String id) {
 
@@ -58,7 +58,7 @@ public class BookController {
 
     }
 
-    @DeleteMapping("/book/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteBookById(@PathVariable String id){
         return bookService.deleteById(id);
